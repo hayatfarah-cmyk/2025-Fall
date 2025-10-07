@@ -13,6 +13,16 @@ class Node:
         self.key = key
         self.value = value
         self.next = next
+        
+    def traverse(self, key):
+        current_node = self.head
+        while current_node is not None:
+            if current_node.key == key:
+                return current_node.value
+            else:
+                current_node = current_node.next
+        return None
+                
 
 # Implements the common h(x) = x mod m 
 class DeterministicHash:
@@ -91,7 +101,8 @@ class HashTable:
             return head.value
         else:
             # TODO: Implement search for opt=False
-            return None
+            traverse(self)
+        return None
     
     '''
     Deletes key from the table.

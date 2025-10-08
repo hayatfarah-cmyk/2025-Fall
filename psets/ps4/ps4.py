@@ -13,15 +13,6 @@ class Node:
         self.key = key
         self.value = value
         self.next = next
-        
-    def traverse(self, key):
-        current_node = self.head
-        while current_node is not None:
-            if current_node.key == key:
-                return True
-            else:
-                return False
-        return None
                 
 
 # Implements the common h(x) = x mod m 
@@ -101,7 +92,11 @@ class HashTable:
             return head.value
         else:
             # TODO: Implement search for opt=False, finished unchecked
-            traverse(self)
+            current_node = self.head
+            while current_node is not None:
+                if current_node.key == key:
+                    return current_node.value
+                current_node = current_node.next
         return None
     
     '''
@@ -115,6 +110,8 @@ class HashTable:
     '''
     def delete(self, key):
         idx = self._bucket_index(key)
+        current_node = self.table[idx]
+        prev = None
 
         if self.optimize:
             if self.table[idx] is None:
@@ -123,5 +120,12 @@ class HashTable:
             return True
         else:
             # TODO: Implement delete for opt=False, finished but unchecked
-            traverse(self)
+            while current_node is not None:
+                if current_node.key == key:
+                    if prev is None:
+                        prev = current_node
+                    else:
+                        prev.next = current_node.next
+                    return True
+                prev, currrent_node = current_node, current_node.next
         return None

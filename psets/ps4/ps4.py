@@ -18,9 +18,9 @@ class Node:
         current_node = self.head
         while current_node is not None:
             if current_node.key == key:
-                return current_node.value
+                return True
             else:
-                current_node = current_node.next
+                return False
         return None
                 
 
@@ -100,7 +100,7 @@ class HashTable:
                 return None
             return head.value
         else:
-            # TODO: Implement search for opt=False
+            # TODO: Implement search for opt=False, finished unchecked
             traverse(self)
         return None
     
@@ -122,5 +122,6 @@ class HashTable:
             self.table[idx] = self.table[idx].next
             return True
         else:
-            # TODO: Implement delete for opt=False
-            return False
+            # TODO: Implement delete for opt=False, finished but unchecked
+            traverse(self)
+        return None
